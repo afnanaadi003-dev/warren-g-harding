@@ -1,1 +1,869 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warren G. Harding Presidential Archive & Return to Normalcy Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --navy-dark: #090d14;
+            --navy-mid: #121927;
+            --slate-panel: #232d3f;
+            --gold-accent: #dfb15b;
+            --gold-light: #f7e3ad;
+            --text-light: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--navy-dark);
+            color: var(--text-light);
+        }
+
+        .font-serif-title {
+            font-family: 'Cinzel', serif;
+        }
+
+        .glass-panel {
+            background: rgba(18, 25, 39, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(223, 177, 91, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(35, 45, 63, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(223, 177, 91, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(223, 177, 91, 0.7);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(223, 177, 91, 0.3);
+        }
+
+        .gradient-gold-text {
+            background: linear-gradient(135deg, #ffffff 0%, #f7e3ad 50%, #dfb15b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(9, 13, 20, 0.5);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(223, 177, 91, 0.4);
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(223, 177, 91, 0.7);
+        }
+    </style>
+</head>
+<body class="custom-scrollbar overflow-x-hidden selection:bg-amber-600 selection:text-slate-950">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-amber-500/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-300 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20 font-bold">
+                        <span class="font-serif-title font-bold text-lg">WGH</span>
+                    </div>
+                    <div>
+                        <span class="font-serif-title text-xl font-bold tracking-wider text-white block">HARDING ARCHIVE</span>
+                        <span class="text-xs text-amber-400 tracking-widest uppercase">29th U.S. President (1921–1923)</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#overview" class="text-gray-300 hover:text-amber-400 transition-colors">Overview</a>
+                    <a href="#works" class="text-gray-300 hover:text-amber-400 transition-colors">10 Key Works</a>
+                    <a href="#treatise" class="text-gray-300 hover:text-amber-400 transition-colors">Historical Treatise</a>
+                    <a href="#normalcy" class="text-gray-300 hover:text-amber-400 transition-colors">Return to Normalcy</a>
+                    <a href="#family" class="text-gray-300 hover:text-amber-400 transition-colors">Florence & Lineage</a>
+                    <a href="#literature" class="text-gray-300 hover:text-amber-400 transition-colors">Books (8)</a>
+                    <a href="#cabinet" class="text-gray-300 hover:text-amber-400 transition-colors">Helping Hands</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <button onclick="openSearchModal()" class="p-2.5 rounded-full bg-slate-900/60 text-amber-300 hover:bg-slate-800 hover:text-white border border-amber-500/30 transition-all">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button onclick="window.print()" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all shadow-md shadow-amber-500/30">
+                        <i class="fas fa-print text-xs"></i>
+                        <span>Export Archive</span>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-gray-300 hover:text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden glass-panel border-b border-amber-500/30 px-4 pt-2 pb-6 space-y-3">
+            <a href="#overview" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base text-gray-300 hover:bg-slate-800/60">Overview</a>
+            <a href="#works" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base text-gray-300 hover:bg-slate-800/60">10 Key Works</a>
+            <a href="#treatise" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base text-gray-300 hover:bg-slate-800/60">Historical Treatise</a>
+            <a href="#normalcy" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base text-gray-300 hover:bg-slate-800/60">Return to Normalcy</a>
+            <a href="#family" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base text-gray-300 hover:bg-slate-800/60">Florence & Lineage</a>
+            <a href="#literature" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base text-gray-300 hover:bg-slate-800/60">Books (8)</a>
+            <a href="#cabinet" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base text-gray-300 hover:bg-slate-800/60">Helping Hands</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="overview" class="relative pt-36 pb-20 overflow-hidden bg-gradient-to-b from-slate-950 via-navy-dark to-navy-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-900/80 border border-amber-500/40 text-amber-300 text-xs font-bold tracking-wider uppercase">
+                        <i class="fas fa-landmark text-amber-400"></i>
+                        <span>29th President of the United States • Return to Normalcy</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold font-serif-title leading-tight">
+                        Warren G. Harding <br>
+                        <span class="gradient-gold-text">Peace, Economic Renewal & Modern Governance</span>
+                    </h1>
+                    <p class="text-lg text-gray-300 leading-relaxed font-light">
+                        Elected in a 1920 landslide, Warren Gamaliel Harding promised a national "Return to Normalcy" following World War I. He convened the historic Washington Naval Conference, established the modern federal budget system, championed civil rights in the South, and spearheaded postwar economic recovery.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="text-3xl font-extrabold text-amber-400 font-serif-title">881</span>
+                            <span class="block text-xs text-gray-400 uppercase mt-1">Days in Office</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="text-3xl font-extrabold text-amber-300 font-serif-title">5</span>
+                            <span class="block text-xs text-gray-400 uppercase mt-1">Naval Powers Accord</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="text-3xl font-extrabold text-amber-400 font-serif-title">1921</span>
+                            <span class="block text-xs text-gray-400 uppercase mt-1">Budget Act Passed</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="text-3xl font-extrabold text-amber-300 font-serif-title">1st</span>
+                            <span class="block text-xs text-gray-400 uppercase mt-1">Radio President</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Harding Photo Section -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto w-full max-w-md rounded-2xl overflow-hidden glass-panel p-3 border border-amber-500/40 shadow-2xl">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/President_Hoover_portrait_1928.jpg" alt="President Warren G. Harding Official Portrait" class="w-full h-auto max-h-[480px] object-cover rounded-xl brightness-95 contrast-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-dark via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl glass-panel border border-amber-500/30">
+                            <p class="text-sm italic text-amber-100 font-serif-title">"America's present need is not heroics, but healing; not nostrums, but normalcy."</p>
+                            <p class="text-xs text-amber-400 font-semibold mt-1 text-right">— Campaign Address (May 14, 1920)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 Major Accomplishments Slider -->
+    <section id="works" class="py-20 bg-slate-950/40 border-y border-amber-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif-title text-white">10 Landmark Accomplishments</h2>
+                    <p class="text-amber-300 mt-2">From naval disarmament and budget reform to civil rights leadership</p>
+                </div>
+                <div class="flex space-x-3 mt-6 md:mt-0">
+                    <button id="slidePrev" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-amber-300 hover:text-white hover:bg-slate-800 transition-all">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="slideNext" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-amber-300 hover:text-white hover:bg-slate-800 transition-all">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Carousel -->
+            <div class="relative overflow-hidden">
+                <div id="worksSlider" class="flex transition-transform duration-500 ease-out gap-6">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historical Treatise -->
+    <section id="treatise" class="py-20 bg-navy-dark relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-amber-500/30">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="px-3 py-1 rounded-full bg-slate-900/80 text-amber-300 text-xs font-bold uppercase tracking-wider">Historical Treatise</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-white mt-3">The Harding Presidency & Postwar Reconstruction (1921–1923)</h2>
+                    <p class="text-amber-200/80 text-sm mt-2">Exhaustive analysis of the Washington Naval Treaty, civil rights in Birmingham, economic revival, and scandals</p>
+                </div>
+
+                <div class="prose prose-invert max-w-none text-gray-300 space-y-6 text-justify text-base leading-relaxed font-light">
+                    <h3 class="text-2xl font-serif-title font-bold text-amber-300 border-b border-amber-500/30 pb-2">I. The Washington Naval Conference & Disarmament Diplomacy (1921–1922)</h3>
+                    <p>
+                        In November 1921, President Harding convened the Washington Naval Conference, inviting nine world powers to negotiate global disarmament and Pacific security. Spearheaded by Secretary of State Charles Evans Hughes, the conference resulted in the landmark <strong>Five-Power Naval Treaty</strong>, establishing strict capital ship tonnage ratios (5:5:3) between the United States, Great Britain, Japan, France, and Italy.
+                    </p>
+                    <p>
+                        This agreement halted a costly naval arms race, led to the scrapping of over 70 warships, and stabilized East Asian geopolitical relations for over a decade, proving to be one of the most successful international disarmament treaties in American history.
+                    </p>
+
+                    <h3 class="text-2xl font-serif-title font-bold text-amber-300 border-b border-amber-500/30 pb-2 mt-8">II. The Budget and Accounting Act of 1921 & Fiscal Modernization</h3>
+                    <p>
+                        Prior to 1921, executive departments submitted independent budget requests directly to Congress without centralized executive coordination. President Harding signed the <strong>Budget and Accounting Act of 1921</strong>, revolutionizing federal public finance by establishing:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
+                        <li><strong>Bureau of the Budget (now OMB):</strong> Empowered the President to compile and submit an annual unified federal budget.</li>
+                        <li><strong>General Accounting Office (GAO, now GAO):</strong> Created an independent legislative audit authority to inspect federal spending.</li>
+                    </ul>
+                    <p>
+                        Working with Treasury Secretary Andrew Mellon, Harding cut income tax rates, reduced government spending from $6.3 billion to $3.2 billion, and rapidly paid down the national debt.
+                    </p>
+
+                    <h3 class="text-2xl font-serif-title font-bold text-amber-300 border-b border-amber-500/30 pb-2 mt-8">III. Civil Rights Leadership: The 1921 Birmingham Address</h3>
+                    <p>
+                        On October 26, 1921, President Harding traveled to Birmingham, Alabama, to deliver a courageous address on racial equality before a segregated audience of 100,000 citizens. Harding was the first sitting U.S. President since Reconstruction to directly advocate for political, economic, and educational equality for Black Americans in the Deep South.
+                    </p>
+                    <p>
+                        Harding declared: <em>"Whether you will it or not, unless our democracy is a lie, you must stand for equality of political opportunity, for equality of educational opportunity, and for equality of economic opportunity."</em> He also strongly supported the passage of the Dyer Anti-Lynching Bill.
+                    </p>
+
+                    <h3 class="text-2xl font-serif-title font-bold text-amber-300 border-b border-amber-500/30 pb-2 mt-8">IV. Administration Scandals & Objective Historical Analysis</h3>
+                    <p>
+                        Following his unexpected death from a heart attack in San Francisco on August 2, 1923, Harding's legacy became overshadowed by corruption scandals involving subordinates known as the "Ohio Gang." The most notable was the <strong>Teapot Dome Scandal</strong>, in which Secretary of the Interior Albert B. Fall secretly leased naval oil reserves in Wyoming and California to private oil companies in exchange for bribes. Fall became the first U.S. Cabinet officer convicted of a felony committed in office.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Return to Normalcy Section -->
+    <section id="normalcy" class="py-20 bg-slate-950/40 border-t border-amber-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="w-16 h-16 rounded-full bg-amber-600/20 text-amber-400 border border-amber-400/30 flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fas fa-hand-holding-hand"></i>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-white">Pillars of "Return to Normalcy"</h2>
+                <p class="text-amber-300 mt-2">Core governance principles defined by President Warren G. Harding</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card p-6 rounded-2xl relative">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fas fa-ship"></i></div>
+                    <h3 class="text-xl font-bold text-white font-serif-title mb-2">1. Naval Disarmament</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed font-light">Led the Washington Naval Treaty to halt international arms build-ups and preserve Pacific stability.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fas fa-vault"></i></div>
+                    <h3 class="text-xl font-bold text-white font-serif-title mb-2">2. Unified Federal Budget</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed font-light">Enacted the Budget Act of 1921 creating executive fiscal oversight and debt reduction.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fas fa-scale-balanced"></i></div>
+                    <h3 class="text-xl font-bold text-white font-serif-title mb-2">3. Southern Civil Rights</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed font-light">Advocated political and economic equality for Black Americans and anti-lynching legislation.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fas fa-tower-cell"></i></div>
+                    <h3 class="text-xl font-bold text-white font-serif-title mb-2">4. Modern Communications</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed font-light">First U.S. President to utilize nationwide radio broadcasts and champion technology integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Florence & Family Tree -->
+    <section id="family" class="py-20 bg-navy-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="px-3 py-1 rounded-full bg-slate-900/80 text-amber-300 text-xs font-semibold uppercase tracking-wider">First Lady & Political Partner</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-white">Florence Kling Harding: Pioneer in Public Engagement</h2>
+                    <p class="text-gray-300 leading-relaxed font-light">
+                        Florence Kling Harding was an energetic and influential First Lady. She actively managed newspaper circulation for the <em>Marion Daily Star</em>, organized front-porch press relations during the 1920 campaign, championed wounded WWI veterans, and opened the White House to public tours and press photo sessions.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-4 rounded-xl border border-amber-500/20">
+                            <i class="fas fa-newspaper text-amber-400 text-xl mb-2"></i>
+                            <h4 class="text-white font-bold text-sm">Media & Campaign Strategist</h4>
+                            <p class="text-gray-400 text-xs mt-1">Managed newspaper circulation & press relations for the 1920 campaign.</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl border border-amber-500/20">
+                            <i class="fas fa-user-nurse text-amber-300 text-xl mb-2"></i>
+                            <h4 class="text-white font-bold text-sm">Disabled Veterans Advocate</h4>
+                            <p class="text-gray-400 text-xs mt-1">Championed healthcare and hospital resources for returning WWI veterans.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <!-- Family Tree Visual -->
+                    <div class="glass-panel p-8 rounded-3xl border border-amber-500/30">
+                        <h3 class="text-2xl font-serif-title font-bold text-white mb-6 text-center">The Harding Lineage</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Parents -->
+                            <div class="flex justify-center space-x-6 text-center">
+                                <div class="p-3 rounded-xl bg-slate-900 border border-amber-500/40 w-44">
+                                    <span class="text-xs text-amber-400 uppercase">Father</span>
+                                    <p class="text-white font-bold text-sm">Dr. George Tryon Harding</p>
+                                    <span class="text-xs text-gray-400">1843–1928 (Physician)</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-900 border border-amber-500/40 w-44">
+                                    <span class="text-xs text-amber-400 uppercase">Mother</span>
+                                    <p class="text-white font-bold text-sm">Phoebe Elizabeth Dickerson</p>
+                                    <span class="text-xs text-gray-400">1843–1910</span>
+                                </div>
+                            </div>
+
+                            <div class="w-0.5 h-6 bg-amber-500/40 mx-auto"></div>
+
+                            <!-- Union -->
+                            <div class="flex justify-center">
+                                <div class="p-4 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-amber-950 border-2 border-amber-400 text-center w-72 shadow-lg shadow-amber-500/20">
+                                    <span class="text-xs text-amber-300 font-bold uppercase tracking-wider">Married July 8, 1891</span>
+                                    <h4 class="text-lg font-bold text-white font-serif-title mt-1">Warren & Florence Harding</h4>
+                                </div>
+                            </div>
+
+                            <div class="w-0.5 h-6 bg-amber-500/40 mx-auto"></div>
+
+                            <!-- Stepchild -->
+                            <div class="flex justify-center">
+                                <div class="p-3 rounded-lg bg-slate-900/80 border border-amber-500/40 text-center w-64">
+                                    <p class="text-sm text-amber-300 font-semibold">Eugene Marshall DeWolfe</p>
+                                    <span class="text-xs text-gray-400">1880–1915 (Florence's Son)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Literature Shelf (8 Books) -->
+    <section id="literature" class="py-20 bg-slate-950/40 border-t border-amber-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-3 py-1 rounded-full bg-slate-900/80 text-amber-300 text-xs font-semibold uppercase tracking-wider">Presidential Publications</span>
+                <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-white mt-2">8 Featured Books & Archival Volumes</h2>
+                <p class="text-amber-300 mt-2">Explore key publications and political speeches by and about Warren G. Harding</p>
+            </div>
+
+            <div id="booksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Dynamic render -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cabinet Grid -->
+    <section id="cabinet" class="py-20 bg-navy-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-3 py-1 rounded-full bg-slate-900/80 text-amber-300 text-xs font-semibold uppercase tracking-wider">The Administration</span>
+                <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-white mt-2">Helping Hands: Key Cabinet & Advisors</h2>
+                <p class="text-amber-300 mt-2">Click any profile card to inspect key cabinet figures during the Harding administration</p>
+            </div>
+
+            <div id="cabinetGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamic cabinet render -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-amber-500/30 py-12 text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex justify-center space-x-3 items-center">
+                <div class="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-slate-950 font-serif-title font-bold">WGH</div>
+                <span class="font-serif-title text-lg text-white font-bold">Warren G. Harding Presidential Archive</span>
+            </div>
+            <p class="text-gray-400 max-w-2xl mx-auto text-xs leading-relaxed">
+                Dedicated to documenting the life, 29th presidency, Washington Naval Conference, and fiscal policies of Warren Gamaliel Harding (1865–1923).
+            </p>
+            <p class="text-xs text-amber-400">Roaring Twenties Charcoal & Metallic Gold Theme • Interactive Single-Page Application</p>
+        </div>
+    </footer>
+
+    <!-- Universal Modal -->
+    <div id="modalOverlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel max-w-3xl w-full max-h-[90vh] rounded-3xl border border-amber-500/40 p-6 sm:p-8 overflow-y-auto custom-scrollbar relative">
+            <button onclick="closeModal()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-900/80 text-gray-300 hover:text-white hover:bg-slate-800 flex items-center justify-center transition-all">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-start justify-center pt-24 p-4">
+        <div class="glass-panel max-w-2xl w-full rounded-2xl border border-amber-500/40 p-6">
+            <div class="flex items-center space-x-3 border-b border-amber-500/40 pb-4">
+                <i class="fas fa-search text-amber-400 text-lg"></i>
+                <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search Washington Naval Treaty, Budget Act, Mellon, Teapot Dome..." class="bg-transparent w-full text-white placeholder-gray-400 focus:outline-none text-lg">
+                <button onclick="closeSearchModal()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="searchResults" class="mt-4 space-y-3 max-h-96 overflow-y-auto custom-scrollbar">
+                <p class="text-xs text-gray-400 text-center py-4">Type to search across the entire Harding presidential archive...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA ARCHITECTURE --- //
+
+        const worksData = [
+            {
+                title: "Washington Naval Treaty",
+                year: "1921–1922",
+                category: "Disarmament Diplomacy",
+                icon: "fa-ship",
+                desc: "Brokered historic Five-Power Naval Treaty limiting capital ship tonnage and halting an international naval arms race."
+            },
+            {
+                title: "Budget & Accounting Act of 1921",
+                year: "1921",
+                category: "Fiscal Reform",
+                icon: "fa-vault",
+                desc: "Established the modern executive budget system, creating the Bureau of the Budget (OMB) and General Accounting Office (GAO)."
+            },
+            {
+                title: "Birmingham Civil Rights Address",
+                year: "1921",
+                category: "Civil Rights",
+                icon: "fa-scale-balanced",
+                desc: "Delivered historic speech in Alabama demanding political, economic, and educational equality for Black Americans."
+            },
+            {
+                title: "Federal Highway Act of 1921",
+                year: "1921",
+                category: "Infrastructure",
+                icon: "fa-road",
+                desc: "Provided federal matching funds to states to construct America's first interconnected national highway network."
+            },
+            {
+                title: "Veterans' Bureau Establishment",
+                year: "1921",
+                category: "Veterans' Welfare",
+                icon: "fa-user-doctor",
+                desc: "Consolidated federal veterans' programs into a unified bureau to manage hospitals, vocational training, and benefits."
+            },
+            {
+                title: "Postwar Tax Cuts & Debt Reduction",
+                year: "1921–1923",
+                category: "Economic Reform",
+                icon: "fa-chart-line",
+                desc: "Reduced wartime income tax rates and slashed federal spending from $6.3 billion to $3.2 billion to restore prosperity."
+            },
+            {
+                title: "First Presidential Radio Address",
+                year: "1922",
+                category: "Communications",
+                icon: "fa-tower-cell",
+                desc: "Became the first U.S. President to broadcast over nationwide radio, inaugurating modern political media communication."
+            },
+            {
+                title: "Emergency Tariff Act & Agricultural Aid",
+                year: "1921",
+                category: "Agricultural Policy",
+                icon: "fa-wheat-awn",
+                desc: "Passed protective tariffs and expanded federal credit facilities for American farmers during postwar crop price drops."
+            },
+            {
+                title: "Pardon of Eugene V. Debs",
+                year: "1921",
+                category: "Executive Clemency",
+                icon: "fa-dove",
+                desc: "Commuted the wartime Sedition Act sentence of socialist leader Eugene Debs, inviting him to the White House on Christmas Day."
+            },
+            {
+                title: "Good Neighbor Foundations in Latin America",
+                year: "1921–1922",
+                category: "Diplomacy",
+                icon: "fa-earth-americas",
+                desc: "Initiated the withdrawal of U.S. Marines from the Dominican Republic and negotiated indemnities with Colombia."
+            }
+        ];
+
+        const booksData = [
+            {
+                id: "book-1",
+                title: "Rededicating America",
+                year: "1920",
+                topic: "Campaign Speeches & Philosophy",
+                cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80",
+                summary: "Compiling Harding's 1920 presidential speeches, 'Rededicating America' outlines his vision for domestic healing, constitutional balance, disarmament, and economic recovery following the destruction of World War I."
+            },
+            {
+                id: "book-2",
+                title: "Our Common Country",
+                year: "1921",
+                topic: "Social & Civic Policy Papers",
+                cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80",
+                summary: "Published shortly after his inauguration, this collection presents Harding's essays on agriculture, labor relations, women's suffrage, education, and civic unity in a modernizing 1920s America."
+            },
+            {
+                id: "book-3",
+                title: "The Harding Era: Warren G. Harding and His Administration",
+                year: "1968",
+                topic: "Historical Biography by Robert K. Murray",
+                cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80",
+                summary: "A seminal re-evaluation of the 29th presidency, analyzing Harding's foreign policy achievements, budget reforms, and civil rights stance while providing objective context on administration scandals."
+            },
+            {
+                id: "book-4",
+                title: "The Shadow of Blooming Grove",
+                year: "1968",
+                topic: "Biography by Francis Russell",
+                cover: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=400&q=80",
+                summary: "An exhaustive biography detailing Harding's early years in Marion, Ohio, his newspaper career with the Marion Daily Star, Senate leadership, and presidential tenure."
+            },
+            {
+                id: "book-5",
+                title: "The Washington Conference, 1921-1922",
+                year: "1962",
+                topic: "Diplomatic History by Raymond L. Buell",
+                cover: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=400&q=80",
+                summary: "Examines the strategic negotiations of the 1921 Naval Disarmament Conference, assessing the roles of Charles Evans Hughes and Warren G. Harding in securing international arms limits."
+            },
+            {
+                id: "book-6",
+                title: "Teapot Dome: Oil and Politics in the 1920s",
+                year: "1990",
+                topic: "Political Analysis by Burl Noggle",
+                cover: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+                summary: "A comprehensive investigation of the Teapot Dome oil lease scandal, detailing congressional investigations, judicial proceedings, and the impact on presidential executive administration."
+            },
+            {
+                id: "book-7",
+                title: "Florence Harding: The First Lady, the Jazz Age, and the Death of America's Most Mysterious President",
+                year: "1998",
+                topic: "Biography by Carl Sferrazza Anthony",
+                cover: "https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=400&q=80",
+                summary: "A detailed account of Florence Kling Harding's life, documenting her business acumen, White House press relations, political partnerships, and advocacy for disabled veterans."
+            },
+            {
+                id: "book-8",
+                title: "Speeches and Addresses of Warren G. Harding",
+                year: "1923",
+                topic: "Official Archival Collection",
+                cover: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=400&q=80",
+                summary: "Official White House compilation of President Harding's major addresses, including the 1921 Birmingham civil rights speech, Washington Naval Conference opening address, and state of the union messages."
+            }
+        ];
+
+        const cabinetData = [
+            {
+                name: "Charles Evans Hughes",
+                role: "Secretary of State",
+                bio: "Former Supreme Court Justice who directed the 1921 Washington Naval Conference, securing historic global disarmament treaties.",
+                achievement: "Architect of Washington Naval Treaty"
+            },
+            {
+                name: "Andrew W. Mellon",
+                role: "Secretary of the Treasury",
+                bio: "Industrialist who orchestrated postwar tax reductions, spending cuts, and national debt retirement during the 1920s expansion.",
+                achievement: "Architect of Postwar Tax & Debt Cuts"
+            },
+            {
+                name: "Herbert Hoover",
+                role: "Secretary of Commerce",
+                bio: "Transformed Commerce into a modern organizing body for commercial aviation, radio regulation, and manufacturing standards.",
+                achievement: "Modernized Commerce & Public Infrastructure"
+            },
+            {
+                name: "Calvin Coolidge",
+                role: "Vice President of the United States",
+                bio: "Former Governor of Massachusetts who attended cabinet meetings, succeeding to the presidency upon Harding's death in 1923.",
+                achievement: "Succeeded to the Presidency in 1923"
+            },
+            {
+                name: "Albert B. Fall",
+                role: "Secretary of the Interior (1921–1923)",
+                bio: "Cabinet officer involved in the Teapot Dome scandal, leasing naval oil reserves to private operators in exchange for bribes.",
+                achievement: "Focus of Teapot Dome Investigations"
+            },
+            {
+                name: "Will H. Hays",
+                role: "Postmaster General",
+                bio: "Reorganized the Post Office Department and improved mail delivery efficiency before leaving to head the MPDAA motion picture association.",
+                achievement: "Reorganized Postal Infrastructure"
+            }
+        ];
+
+        // --- RENDER LOGIC --- //
+
+        function renderWorksSlider() {
+            const container = document.getElementById('worksSlider');
+            container.innerHTML = worksData.map((item, idx) => `
+                <div class="w-80 sm:w-96 flex-shrink-0 glass-card p-6 rounded-2xl border border-amber-500/30 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-slate-900/80 text-amber-300 border border-amber-500/30">${item.category}</span>
+                            <span class="text-xs font-semibold text-amber-300 font-serif-title">${item.year}</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 text-xl mb-4">
+                            <i class="fas ${item.icon}"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-serif-title">${item.title}</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed font-light">${item.desc}</p>
+                    </div>
+                    <button onclick="openWorkDetail(${idx})" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900/60 hover:bg-amber-500 text-amber-300 hover:text-slate-950 text-xs font-bold tracking-wider uppercase transition-all border border-amber-500/30">
+                        Explore Full Impact
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function renderBooksGrid() {
+            const grid = document.getElementById('booksGrid');
+            grid.innerHTML = booksData.map(book => `
+                <div onclick="openBookModal('${book.id}')" class="glass-card rounded-2xl p-5 border border-amber-500/30 cursor-pointer group hover:border-amber-400/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 rounded-xl overflow-hidden mb-4 bg-navy-dark">
+                            <img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-dark via-transparent to-transparent opacity-80"></div>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-navy-dark/90 border border-amber-400/30 text-[10px] text-amber-300 font-bold font-serif-title">${book.year}</span>
+                        </div>
+                        <span class="text-[10px] text-amber-300 uppercase font-semibold tracking-widest">${book.topic}</span>
+                        <h3 class="text-lg font-bold text-white font-serif-title mt-1 group-hover:text-amber-300 transition-colors">${book.title}</h3>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-amber-500/20 flex items-center justify-between text-xs text-amber-300 font-medium">
+                        <span>Read Summary</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCabinetGrid() {
+            const grid = document.getElementById('cabinetGrid');
+            grid.innerHTML = cabinetData.map((person, idx) => `
+                <div onclick="openCabinetModal(${idx})" class="glass-card p-6 rounded-2xl border border-amber-500/30 cursor-pointer group hover:border-amber-400/60 transition-all">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-300 flex items-center justify-center text-slate-950 font-bold text-lg mb-4 shadow-md shadow-amber-500/20">
+                        ${person.name.charAt(0)}
+                    </div>
+                    <span class="text-xs text-amber-300 font-semibold uppercase tracking-wider">${person.role}</span>
+                    <h3 class="text-xl font-bold text-white font-serif-title mt-1 group-hover:text-amber-300 transition-colors">${person.name}</h3>
+                    <p class="text-gray-300 text-sm mt-3 font-light leading-relaxed line-clamp-3">${person.bio}</p>
+                    <div class="mt-4 pt-3 border-t border-amber-500/20 text-xs text-amber-300 font-medium flex items-center justify-between">
+                        <span>${person.achievement}</span>
+                        <i class="fas fa-plus text-xs"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- SLIDER CONTROLS --- //
+        let currentSlide = 0;
+        function setupSliderControls() {
+            const slider = document.getElementById('worksSlider');
+            const prev = document.getElementById('slidePrev');
+            const next = document.getElementById('slideNext');
+            const maxSlides = worksData.length - 1;
+
+            next.addEventListener('click', () => {
+                currentSlide = currentSlide < maxSlides ? currentSlide + 1 : 0;
+                updateSlider();
+            });
+
+            prev.addEventListener('click', () => {
+                currentSlide = currentSlide > 0 ? currentSlide - 1 : maxSlides;
+                updateSlider();
+            });
+
+            function updateSlider() {
+                const cardWidth = window.innerWidth < 640 ? 320 + 24 : 384 + 24;
+                slider.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+            }
+        }
+
+        // --- MODALS --- //
+        function openModal(htmlContent) {
+            const modal = document.getElementById('modalOverlay');
+            document.getElementById('modalContent').innerHTML = htmlContent;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+        }
+
+        function openBookModal(bookId) {
+            const book = booksData.find(b => b.id === bookId);
+            if(!book) return;
+
+            openModal(`
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row items-center gap-6 border-b border-amber-500/30 pb-6">
+                        <img src="${book.cover}" alt="${book.title}" class="w-36 h-48 object-cover rounded-xl shadow-lg border border-amber-500/30">
+                        <div>
+                            <span class="px-3 py-1 rounded-full bg-slate-900/80 text-amber-300 text-xs font-bold uppercase tracking-wider">${book.topic}</span>
+                            <h2 class="text-2xl sm:text-3xl font-serif-title font-bold text-white mt-2">${book.title}</h2>
+                            <p class="text-amber-300 text-sm font-semibold mt-1">Published: ${book.year}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-serif-title font-bold text-amber-300 mb-3">Archival Summary</h4>
+                        <p class="text-gray-300 leading-relaxed text-sm sm:text-base font-light text-justify">${book.summary}</p>
+                    </div>
+                    <div class="pt-4 border-t border-amber-500/20 flex justify-end">
+                        <button onclick="closeModal()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all">Close</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function openWorkDetail(index) {
+            const work = worksData[index];
+            openModal(`
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4 border-b border-amber-500/30 pb-4">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 text-2xl">
+                            <i class="fas ${work.icon}"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-300 uppercase font-bold tracking-wider">${work.category} (${work.year})</span>
+                            <h2 class="text-2xl font-serif-title font-bold text-white">${work.title}</h2>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed font-light">${work.desc}</p>
+                    <div class="glass-card p-4 rounded-xl border border-amber-500/20 text-xs text-amber-100">
+                        <i class="fas fa-info-circle text-amber-300 mr-2"></i>
+                        <span>Permanent historical record maintained at the Warren G. Harding Presidential Library & Museum (Marion, Ohio).</span>
+                    </div>
+                </div>
+            `);
+        }
+
+        function openCabinetModal(index) {
+            const person = cabinetData[index];
+            openModal(`
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4 border-b border-amber-500/30 pb-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-300 flex items-center justify-center text-slate-950 text-2xl font-bold font-serif-title">
+                            ${person.name.charAt(0)}
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-300 uppercase font-bold tracking-wider">${person.role}</span>
+                            <h2 class="text-2xl font-serif-title font-bold text-white">${person.name}</h2>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-amber-300 uppercase tracking-wider mb-2">Historical Role</h4>
+                        <p class="text-gray-300 text-base leading-relaxed font-light">${person.bio}</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl border border-amber-500/30">
+                        <span class="text-xs text-amber-300 uppercase font-bold">Key Contribution</span>
+                        <p class="text-white font-medium text-sm mt-1">${person.achievement}</p>
+                    </div>
+                </div>
+            `);
+        }
+
+        // --- SEARCH --- //
+        function openSearchModal() {
+            document.getElementById('searchModal').classList.remove('hidden');
+            document.getElementById('searchInput').focus();
+        }
+
+        function closeSearchModal() {
+            document.getElementById('searchModal').classList.add('hidden');
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const resultsContainer = document.getElementById('searchResults');
+
+            if (!query) {
+                resultsContainer.innerHTML = '<p class="text-xs text-gray-400 text-center py-4">Type to search across the entire Harding presidential archive...</p>';
+                return;
+            }
+
+            const matchedWorks = worksData.filter(w => w.title.toLowerCase().includes(query) || w.desc.toLowerCase().includes(query));
+            const matchedBooks = booksData.filter(b => b.title.toLowerCase().includes(query) || b.summary.toLowerCase().includes(query));
+            const matchedCabinet = cabinetData.filter(c => c.name.toLowerCase().includes(query) || c.role.toLowerCase().includes(query));
+
+            let html = '';
+
+            if (matchedWorks.length > 0) {
+                html += '<h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider mt-2 mb-1">Key Works & Acts</h4>';
+                matchedWorks.forEach(w => {
+                    html += `
+                        <div onclick="closeSearchModal(); openWorkDetail(${worksData.indexOf(w)})" class="p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 cursor-pointer border border-amber-500/30">
+                            <p class="text-white text-sm font-bold">${w.title} (${w.year})</p>
+                            <p class="text-xs text-gray-400 truncate">${w.desc}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            if (matchedBooks.length > 0) {
+                html += '<h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider mt-3 mb-1">Literature & Books</h4>';
+                matchedBooks.forEach(b => {
+                    html += `
+                        <div onclick="closeSearchModal(); openBookModal('${b.id}')" class="p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 cursor-pointer border border-amber-500/30">
+                            <p class="text-white text-sm font-bold">${b.title} (${b.year})</p>
+                            <p class="text-xs text-gray-400 truncate">${b.topic}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            if (matchedCabinet.length > 0) {
+                html += '<h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider mt-3 mb-1">Administration</h4>';
+                matchedCabinet.forEach(c => {
+                    html += `
+                        <div onclick="closeSearchModal(); openCabinetModal(${cabinetData.indexOf(c)})" class="p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 cursor-pointer border border-amber-500/30">
+                            <p class="text-white text-sm font-bold">${c.name}</p>
+                            <p class="text-xs text-gray-400">${c.role}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            if (!html) {
+                html = '<p class="text-xs text-gray-400 text-center py-4">No matching archival record found for "' + query + '"</p>';
+            }
+
+            resultsContainer.innerHTML = html;
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderWorksSlider();
+            renderBooksGrid();
+            renderCabinetGrid();
+            setupSliderControls();
+        });
+    </script>
+</body>
+</html>
 
